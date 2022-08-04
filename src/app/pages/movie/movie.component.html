@@ -1,0 +1,78 @@
+<ng-container *ngIf="movie !== null">
+  <app-slider [items]="[movie]" [isBanner]="true"></app-slider>
+  <div class="mat-tab"></div>
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab label="Overview">
+      <div class="grid">
+        <div class="col-12 md:col-4 lg:col-3">
+          <img class="poster" [src]="imagesSizes.medium + movie.poster_path" [alt]="movie.title" />
+        </div>
+        <div class="col-12 md:col-8 lg:col-9">
+          <h2>Overview</h2>
+          <p class="overview">{{ movie.overview }}</p>
+          <div class="stat">
+            <div class="label">Release Date:</div>
+            <div class="value">{{ movie.release_date | date: 'dd.MM.YYYY' }}</div>
+          </div>
+          <div class="stat">
+            <div class="label">Language:</div>
+            <div class="value">{{ movie.original_language | uppercase }}</div>
+          </div>
+          <div class="stat">
+            <div class="label">Revenue:</div>
+            <div class="value">{{ movie.revenue | currency }}</div>
+          </div>
+          <div class="stat">
+            <div class="label">Duration:</div>
+            <div class="value">{{ movie.runtime }} min</div>
+          </div>
+          <div class="stat">
+            <div class="label">Status:</div>
+            <div class="value">{{ movie.status }}</div>
+          </div>
+          <div class="stat">
+            <div class="label">Genres:</div>
+            <div class="value">
+              <span *ngFor="let genre of movie.genres">{{ genre.name }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid">
+        <ng-container *ngFor="let item of movieCredits?.cast">
+          <div class="col-6 md:col-1 lg:col-1"*ngIf="item" >
+            <img  [src]="imagesSizes.medium + item.profile_path" width="100%" [alt]="item.original_name" />
+            <div>{{item.original_name}}</div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="grid">
+        <ng-container *ngFor="let movie of similarMovies">
+          <div class="col-12 md:col-2 lg-col-2">
+            <app-item [itemData]="movie"></app-item>
+          </div>
+        </ng-container>
+      </div>
+    </mat-tab>
+    <mat-tab label="Videos">
+      <div class="grid">
+      <ng-container *ngFor="let item of movieVideos">
+          <div class="col-12 md:col-4 lg:col-4">
+            <video-embed [key]="item.key" [site]="item.site"></video-embed>
+          </div>
+        </ng-container>
+      </div>
+    </mat-tab>
+    <mat-tab label="Photos">
+      <div class="images">
+        <div class="grid">
+          <ng-container *ngFor="let item of movieImages?.backdrops">
+            <div class="col-12 md:col-4 lg:col-4">
+              <img [src]="imagesSizes.large + item.file_path" alt="poster" width="100%" />
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</ng-container>

@@ -12,7 +12,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemsBannerComponent } from './components/items-banner/items-banner.component';
 import { ItemComponent } from './components/item/item.component';
 import { TvItemComponent } from './components/tv-item/tv-item.component';
-import { PaginatorModule } from 'primeng/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MovieComponent } from './pages/movie/movie.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { VideoEmbedComponent } from './components/video-embed/video-embed.component';
+import { GenresComponent } from './pages/genres/genres.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { TvsComponent } from './pages/tvs/tvs.component';
+import { TvComponent } from './pages/tv/tv.component';
+import { TvSliderComponent } from './components/tv-slider/tv-slider.component';
+// import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -24,14 +35,24 @@ import { PaginatorModule } from 'primeng/paginator';
     SliderComponent,
     ItemsBannerComponent,
     ItemComponent,
-    TvItemComponent
+    TvItemComponent,
+    MovieComponent,
+    VideoEmbedComponent,
+    GenresComponent,
+    TvsComponent,
+    TvComponent,
+    TvSliderComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    PaginatorModule
+    MatPaginatorModule,
+    MatTabsModule,
+    MatInputModule,
+    MatIconModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

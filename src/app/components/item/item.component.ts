@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie';
+import { TV } from 'src/app/models/tv';
 import { IMAGES_SIZES } from '../../constants/images-sizes';
 
 @Component({

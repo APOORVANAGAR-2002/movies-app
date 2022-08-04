@@ -1,0 +1,55 @@
+<ng-container *ngIf="tv !== null">
+  <app-tv-slider [items]="[tv]" [isBanner]="true"></app-tv-slider>
+  <div class="mat-tab"></div>
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab label="Overview">
+      <div class="grid">
+        <div class="col-12 md:col-4 lg:col-3">
+          <img class="poster" [src]="imagesSizes.medium + tv.poster_path" [alt]="tv.name" />
+        </div>
+        <div class="col-12 md:col-8 lg:col-9">
+          <h2>Overview</h2>
+          <p class="overview">{{ tv.overview }}</p>
+          <div class="stat">
+            <div class="label">Release Date:</div>
+            <div class="value">{{ tv.first_air_date | date: 'dd.MM.YYYY' }}</div>
+          </div>
+          <div class="stat">
+            <div class="label">Language:</div>
+            <div class="value">{{ tv.original_language | uppercase }}</div>
+          </div>
+          <div class="stat">
+            <div class="label">Original Name:</div>
+            <div class="value">{{ tv.original_name }}</div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <ng-container *ngFor="let item of similarShows">
+            <div class="col-12 md:col-2 lg:col-2">
+              <app-tv-item [tvData]="item"></app-tv-item>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Videos">
+      <div class="grid">
+        <ng-container *ngFor="let video of tvVideo">
+          <div class="col-12 md:col-3 lg:col-3">
+            <video-embed class="videos" [key]="video.key" [site]="video.site"></video-embed>
+          </div>
+        </ng-container>
+      </div>
+    </mat-tab>
+    <mat-tab label="Photos">
+      <div class="grid">
+        <ng-container *ngFor="let image of tvImage?.backdrops">
+          <div class="col-12 md:col-3 lg:col-3">
+            <img [src]="imageSizes.medium + image.file_path" alt="">
+          </div>
+        </ng-container>
+      </div>
+     </mat-tab>
+  </mat-tab-group>
+</ng-container>
